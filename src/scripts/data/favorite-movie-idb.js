@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-prototype-builtins */
 import { openDB } from 'idb';
 import CONFIG from '../globals/config';
 
@@ -11,12 +13,15 @@ const dbPromise = openDB(DATABASE_NAME, DATABASE_VERSION, {
 
 const FavoriteMovieIdb = {
   async getMovie(id) {
+    if (!id) return;
     return (await dbPromise).get(OBJECT_STORE_NAME, id);
   },
   async getAllMovies() {
     return (await dbPromise).getAll(OBJECT_STORE_NAME);
   },
   async putMovie(movie) {
+    if (!movie.hasOwnProperty('id')) return;
+
     return (await dbPromise).put(OBJECT_STORE_NAME, movie);
   },
   async deleteMovie(id) {
