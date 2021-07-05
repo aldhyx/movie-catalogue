@@ -27,6 +27,7 @@ const FavoriteMovieIdb = {
   async deleteMovie(id) {
     return (await dbPromise).delete(OBJECT_STORE_NAME, id);
   },
+  async searchMovies(query) {},
 };
 
 export default FavoriteMovieIdb;
