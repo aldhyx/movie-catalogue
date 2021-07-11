@@ -1,10 +1,13 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable comma-dangle */
 import FavoriteMovieSearchPresenter from '../src/scripts/views/pages/liked-movies/favorite-movie-search-presenter';
 import FavoriteMovieIdb from '../src/scripts/data/favorite-movie-idb';
+import FavoriteMovieSearchView from '../src/scripts/views/pages/liked-movies/favorite-movie-search-view';
 
 describe('Searching movies', () => {
   let presenter;
   let favoriteMovies;
+  let view;
 
   const searchMovies = (query) => {
     const queryElement = document.getElementById('query');
@@ -13,21 +16,15 @@ describe('Searching movies', () => {
   };
 
   const setMovieSearchContainer = () => {
-    document.body.innerHTML = `
-        <div id="movie-search-container">
-            <input id="query" type="text">
-            <div class="movie-result-container">
-                <ul class="movies">
-                </ul>
-            </div>
-        </div>
-        `;
+    view = new FavoriteMovieSearchView();
+    document.body.innerHTML = view.getTemplate();
   };
 
   const constructPresenter = () => {
     favoriteMovies = spyOnAllFunctions(FavoriteMovieIdb);
     presenter = new FavoriteMovieSearchPresenter({
       favoriteMovies,
+      view,
     });
   };
 

@@ -41,7 +41,7 @@ const FavoriteMovieArray = {
       const loweredCaseQuery = query.toLowerCase();
       const jammedQuery = loweredCaseQuery.replace(/\s/g, '');
 
-      return jammedMovieTitle.indexOf(jammedQuery) != -1;
+      return jammedMovieTitle.indexOf(jammedQuery) !== -1;
     });
   },
 };
